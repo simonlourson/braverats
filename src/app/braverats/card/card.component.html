@@ -1,0 +1,17 @@
+<div *ngIf="card.value >= 0" class="card-border ui-widget" (click)="clickCard()">
+  <div class="card-title">
+    <div></div>
+    <div>{{card.name}}</div>
+    <div class="card-value">{{card.value}}</div>
+  </div>
+  <div class="card-image"></div>
+  <div class="card-rule-text">
+    <div></div>
+    <div>{{card.ruleText}}</div>
+    <div></div>
+  </div>
+</div>
+<div *ngIf="card.value == -1" class="card-face-down">
+</div>
+<div *ngIf="card.value == -2" class="card-empty">
+</div>

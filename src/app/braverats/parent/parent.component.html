@@ -1,0 +1,33 @@
+<p-toast position="top-right" [style]="{marginTop: '40px'}"></p-toast>
+<p-menubar [model]="menuItems">
+
+  <input type="text" size="30" 
+    placeholder="Anonyme"
+    [(ngModel)]="playerName" 
+    (ngModelChange)="playerNameSubject.next($event)" pInputText > 
+</p-menubar>
+
+<p-fieldset *ngIf="lobbyService.lobbyStatus" legend="Active lobby info">
+  Active lobby : {{lobbyService.lobbyUuid}}
+  <div *ngFor="let player of lobbyService.lobbyStatus.players; let index = index" >
+    Player {{index + 1}} : {{player.playerName}}
+  </div>
+</p-fieldset>
+
+<div *ngIf="lobbyService.lobbyStatusOk" class="card-row">
+  <app-card *ngFor="let card of lobbyService.opponentCards | cardArray" [card]="card"></app-card>
+</div>
+
+<div *ngIf="lobbyService.lobbyStatusOk" class="card-row">
+  <app-card *ngFor="let card of lobbyService.opponentPlayedCards | cardArray" [card]="card"></app-card>
+</div>
+
+<div *ngIf="lobbyService.lobbyStatusOk" class="card-row">
+  <app-card *ngFor="let card of lobbyService.myPlayedCards | cardArray" [card]="card"></app-card>
+</div>
+
+<div *ngIf="lobbyService.lobbyStatusOk" class="card-row">
+  <app-card *ngFor="let card of lobbyService.myCards | cardArray" [card]="card" (onClick)=clickCard(card)></app-card>
+</div>
+
+<app-dialog-join-lobby #dialogJoinLobby></app-dialog-join-lobby>

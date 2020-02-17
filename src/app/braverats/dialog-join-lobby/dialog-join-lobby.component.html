@@ -1,0 +1,27 @@
+
+<p-dialog #joinDialog 
+header='Join lobby' 
+[(visible)]="visible"
+[modal]="true" 
+[dismissableMask]="true"
+[closable]="true" 
+[focusOnShow]="false" 
+[maximizable]="false" 
+[draggable]="false" 
+[resizable]="false" 
+>
+
+  <form [formGroup]="joinForm" (ngSubmit)="submit()">
+    <br>
+    <span class="ui-float-label">
+      <input class="float-input" type="text" size="36" formControlName="lobbyUuid" pInputText> 
+      <label for="float-input">Enter the Lobby UUID</label>
+    </span>
+    <!--This is just here so that enter submits the form-->
+    <button type="submit" style='visibility:hidden'></button>
+  </form>
+
+  <p-footer>
+    <p-button type="submit" label="Join" (click)="submit()"></p-button>
+  </p-footer>
+</p-dialog>
